@@ -3,7 +3,7 @@ import { makeAutoObservable } from "mobx";
 export class StoreWrapper {
     constructor (store) {
         this.store = store;
-        this.data = store.data.items.map(el => el.data);
+        this.data = store.data.items.map(el => { return {...el.data, rec: el}});
         this.total = store.getTotalCount();
         this.page = store.currentPage;
         this.pageSize = store.getPageSize();
@@ -21,6 +21,7 @@ export class StoreWrapper {
             pageSize: this.pageSize,
             showSizeChanger: true,
             onShowSizeChange: (...args) => this.updatePagination(...args),
+            onChange: (...args) => this.updatePagination(...args),
         }
     }
 
@@ -33,7 +34,6 @@ export class StoreWrapper {
             this.page = page;
         }
         this.store.loadPage(page);
-        debugger
     };
 
     updateContent(store){

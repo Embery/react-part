@@ -9,14 +9,15 @@ const RefWrapper = (Component) => {
         const [divisions, setDivisions] = useState(null);
       
         useEffect(() => {
-            // extComponent.setHeight(ref.current?.clientHeight || 0)
-            // extComponent.setWidth(ref.current?.clientWidth || 0)
             const t = ref;
             if(ref?.current){
-                new ResizeObserver(()=>{
+                const docEl = document.documentElement;
+                const obs = new ResizeObserver(()=>{
                     extComponent.setHeight(ref.current?.clientHeight || 0);
                     extComponent.setWidth(ref.current?.clientWidth || 0);
-                }).observe(ref.current);
+                });
+                obs.observe(ref.current);
+                obs.observe(docEl);
             }
         }, [])
         return <div ref={ref}><Component {...propsCopy}/></div>;
