@@ -11,7 +11,8 @@ export class StoreWrapper {
         
         const updator = this.updateContent.bind(this);
         store.on('load', updator);
-        store.on('add', updator)
+        store.on('add', updator);
+        store.on('filterchange', updator);
     }
 
     get paginationConfig() {
