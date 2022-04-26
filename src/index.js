@@ -5,10 +5,13 @@ import Div from './components/Div';
 import createReactDiv from './utils/createReactDiv';
 import { notify } from './utils/notify';
 
-export default {
-  TestComponent,
-  ReactTable,
-  Div,
-  createReactDiv,
-  notify,
+const lib = {
+  lib: {
+    TestComponent,
+    ReactTable,
+    Div,
+    createReactDiv,
+    notify,
+  }
 };
+export default lib
